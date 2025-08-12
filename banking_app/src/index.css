@@ -1,0 +1,95 @@
+/* Reset minimaliste */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variables CSS */
+:root {
+  --color-primary: #4a90e2;
+  --color-primary-dark: #357ab8;
+  --color-secondary: #f5a623;
+  --color-bg: #f9f9f9;
+  --color-text: #333;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --radius: 6px;
+}
+
+/* Base globale */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Liens */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-dark);
+  outline: none;
+  text-decoration: underline;
+}
+
+/* Boutons */
+button {
+  cursor: pointer;
+  border: none;
+  padding: 0.6em 1.2em;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--color-primary-dark);
+  outline: none;
+}
+
+/* Inputs & champs de formulaire */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  transition: border-color 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* Listes */
+ul {
+  list-style: none;
+}
+
+/* Conteneur principal */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

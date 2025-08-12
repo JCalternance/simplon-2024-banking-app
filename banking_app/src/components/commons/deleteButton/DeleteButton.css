@@ -1,0 +1,17 @@
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.delete-button svg {
+    width: 1.5rem;
+    aspect-ratio: initial;
+    fill: red;
+}
+
+.delete-button svg:hover {
+    fill: white;
+}

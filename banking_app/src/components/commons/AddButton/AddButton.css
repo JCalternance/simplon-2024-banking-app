@@ -1,0 +1,16 @@
+.add-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+.add-btn svg {
+    width: 1.5rem;
+    aspect-ratio: initial;
+    fill: var(--color-primary);
+}
+
+.add-btn svg:hover {
+    fill: white;
+}
