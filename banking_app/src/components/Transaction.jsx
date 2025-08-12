@@ -112,7 +112,7 @@ export default function Transactions() {
         <div >
             <div className="title">
                 <h2>Transactions</h2>
-                <AddButton onClick={() => toggleModal}/>
+                <AddButton onClick={() => toggleModal()}/>
             </div>
             {isModalOpen && (
                 <div className="modal">
