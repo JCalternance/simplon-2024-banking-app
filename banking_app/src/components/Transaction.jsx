@@ -6,7 +6,7 @@ import {
 } from '../services/transactionService.js';
 import {getCategories} from '../services/categoryService.js';
 import {getPaymentMethods} from '../services/paymentMethodService.js';
-import { formatDate, formatTime} from "../utils/DateTimeFormatter.js";
+import {formatDate, formatTime} from "../utils/DateTimeFormatter.js";
 import DeleteButton from "./commons/deleteButton/DeleteButton.jsx";
 import AddButton from "./commons/addButton/AddButton.jsx";
 
@@ -27,6 +27,7 @@ export default function Transactions() {
     const [categoryColor, setCategoryColor] = useState('');
     const [paymentMethodId, setPaymentMethodId] = useState('');
     const [sortConfig, setSortConfig] = useState({key: null, direction: 'asc'});
+    const [status, setStatus] = useState(null);
 
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -58,7 +59,7 @@ export default function Transactions() {
             return;
         }
         try {
-            await createTransaction({
+            const result = await createTransaction({
                 title,
                 description,
                 amount: parseFloat(amount),
@@ -76,6 +77,12 @@ export default function Transactions() {
             setCategoryId('');
             setPaymentMethodId('');
             loadAll();
+            if (result.offline) {
+                setStatus({message: result.message, offline: true})
+            } else {
+                setStatus({message: '✅ Transaction enregistrée', offline: false})
+            }
+
         } catch (e) {
             alert('Erreur création transaction: ' + e.message);
         }
@@ -108,10 +115,17 @@ export default function Transactions() {
         setSortConfig({key, direction});
     };
 
+
     return (
-        <div >
+        <div>
             <div className="title">
                 <h2>Transactions</h2>
+                {status && (
+                    <p style={{color: status.offline ? 'orange' : 'green'}}>
+                        {status.message}
+                    </p>
+                )}
+
                 <AddButton onClick={() => toggleModal()}/>
             </div>
             {isModalOpen && (
@@ -187,7 +201,8 @@ export default function Transactions() {
                     <th className="th-order" onClick={() => requestSort('title')}>Titre</th>
                     <th className="th-order" onClick={() => requestSort('amount')}>Montant (€)</th>
                     <th className="th-order" onClick={() => requestSort('categoryName')}>Catégorie</th>
-                    <th className="th-order sm-hide" onClick={() => requestSort('paymentMethoName')}>Moyen de paiement</th>
+                    <th className="th-order sm-hide" onClick={() => requestSort('paymentMethodName')}>Moyen de paiement
+                    </th>
                     <th>Actions</th>
                 </tr>
                 </thead>

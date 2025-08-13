@@ -7,10 +7,12 @@ import './App.css';
 import Categories from "./components/Category.jsx";
 import PaymentMethods from "./components/PaymentMethod.jsx";
 import Transactions from "./components/Transaction.jsx";
+import useOfflineSync from "./services/useOfflineSync.js";
+import useAuth from "./hooks/useAuth.js";
 
-function PrivateRoute({children}) {
-    const token = localStorage.getItem('accessToken');
-    return token ? children : <Navigate to="/login"/>;
+function PrivateRoute({ children }) {
+    const { isAuthenticated } = useAuth()
+    return isAuthenticated ? children : <Navigate to="/login" />
 }
 
 function Layout({children}) {
@@ -30,6 +32,8 @@ function Layout({children}) {
 }
 
 export default function App() {
+    useOfflineSync()
+
     return (
         <BrowserRouter>
             <Layout>

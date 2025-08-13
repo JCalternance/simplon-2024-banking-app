@@ -12,6 +12,7 @@ export default defineConfig({
                 'robots.txt',
                 'apple-touch-icon.png',
                 'offline.html',
+                'index.html',
             ],
             manifest: {
                 name: 'Banking App PWA',
@@ -47,7 +48,7 @@ export default defineConfig({
                 clientsClaim: true,
                 skipWaiting: true,
                 offlineGoogleAnalytics: true,
-                navigateFallback: '/offline.html', // Fallback pour navigation offline
+                navigateFallback: '/offline.html',
                 runtimeCaching: [
                     {
                         urlPattern: ({ request }) => request.mode === 'navigate',

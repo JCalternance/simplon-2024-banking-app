@@ -16,6 +16,10 @@ registerSW({
     }
 })
 
+if (!navigator.onLine) {
+    console.log('Démarrage en mode hors ligne')
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
